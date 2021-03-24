@@ -1,0 +1,1 @@
+# Basic blog written in Python
