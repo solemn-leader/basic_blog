@@ -4,10 +4,17 @@ from flask import request
 app = flask.Flask(__name__)
 app.config['DEBUG'] = True
 
-# 127.0.0.1/home
-@app.route('/home', methods=['GET'])
-def home():
-    return '<h1>Home</h1>'
+posts = []
+
+@app.route('/feed', methods=['GET'])
+def feed():
+    return '<br>'.join(posts)
+
+@app.route('/add_post', methods=['GET'])
+def add_post():
+    post = str(request.query_string).replace('%20', ' ')[2: -1]
+    posts.append(post)
+    return post
 
 app.run(
     host='127.0.0.1'
