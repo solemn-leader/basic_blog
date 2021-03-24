@@ -1,5 +1,8 @@
 import flask
 from flask import request
+import os
+
+port = int(os.environ.get('PORT', 5000))
 
 app = flask.Flask(__name__)
 app.config['DEBUG'] = True
@@ -17,5 +20,6 @@ def add_post():
     return post
 
 app.run(
-    host='127.0.0.1'
+    host='0.0.0.0',
+    port=port
 )
